@@ -27,9 +27,9 @@ function displayItems() {
         console.log("View current inventory:");
         console.log("----------------------\n");
 
-        // Log all results of the SELECT statement
-        console.log(res);
-        connection.end();
+        for (var i = 0; i < res.length; i++) {
+            console.log("ID: " + res[i].item_id + " | Product: " + res[i].product_name + " | Category: " + res[i].department_name + " | Price: $" + res[i].price + " | Qty: " + res[i].stock_quantity);
+          }
     });
 
     userAction();
@@ -41,7 +41,7 @@ function userAction() {
             {
             name: "item_id",
             type: "input",
-            message: "What would you like to buy? Enter product id.",
+            message: "What would you like to buy? Enter product ID.",
             validate: function (value) {
                 if (isNaN(value) === false) {
                     return true;
@@ -53,7 +53,7 @@ function userAction() {
         {
             name: "quantity",
             type: "input",
-            message: "What would you like to buy? Enter product id.",
+            message: "How many would you like?",
             validate: function (value) {
                 if (isNaN(value) === false) {
                     return true;
