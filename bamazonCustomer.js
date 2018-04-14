@@ -1,37 +1,71 @@
 var mysql = require("mysql");
-//var inquirer = require("inquirer");
+var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
-  
-    // Your username
+
     user: "root",
-  
-    // Your password
     password: "",
     database: "bamazon"
-  });
+});
 
-  connection.connect(function(err) {
+connection.connect(function (err) {
     if (err) throw err;
-    //console.log("connected as id " + connection.threadId + "\n");
+    console.log("connected as id " + connection.threadId + "\n");
     displayItems();
-  });
+});
 
-  function displayItems() {
+function displayItems() {
 
     var queryDb = "SELECT * FROM products"
 
-    connection.query(queryDb, function(err, res) {
-      if (err) throw err;
-      
-      console.log("----------------------\n");
-      console.log("View current inventory:");
-      console.log("----------------------\n");
-  
-      // Log all results of the SELECT statement
-      console.log(res);
-      connection.end();
+    connection.query(queryDb, function (err, res) {
+        if (err) throw err;
+
+        console.log("----------------------\n");
+        console.log("View current inventory:");
+        console.log("----------------------\n");
+
+        // Log all results of the SELECT statement
+        console.log(res);
+        connection.end();
     });
-  }
+
+    userAction();
+}
+
+function userAction() {
+    inquirer
+        .prompt([
+            {
+            name: "item_id",
+            type: "input",
+            message: "What would you like to buy? Enter product id.",
+            validate: function (value) {
+                if (isNaN(value) === false) {
+                    return true;
+                }
+                return false;
+            },
+            filter: Number
+        },
+        {
+            name: "quantity",
+            type: "input",
+            message: "What would you like to buy? Enter product id.",
+            validate: function (value) {
+                if (isNaN(value) === false) {
+                    return true;
+                }
+                return false;
+            },
+            filter: Number
+        }
+    
+    ]).then(function (answer) {
+        console.log(answer);
+
+        });
+}
+
