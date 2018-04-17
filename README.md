@@ -1,5 +1,5 @@
 # The Bamazon App
-Using MySQL Workbench and npm packages (inquirer and mysql), this app lets user place orders though command line.
+Using MySQL database and npm packages, this app lets user place orders though the command line.
 
 To begin:
 
