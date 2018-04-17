@@ -27,8 +27,11 @@ function displayItems() {
         console.log("----------------------\n");
 
         for (var i = 0; i < res.length; i++) {
-            console.log("ID: " + res[i].item_id + " | Product: " + res[i].product_name + " | Category: " + res[i].department_name + " | Price: $" + res[i].price + " | Qty: " + res[i].stock_quantity + "\nWhat woud you like to buy? Enter product ID.");
+            console.log("ID: " + res[i].item_id + " | Product: " + res[i].product_name + " | Category: " + res[i].department_name + " | Price: $" + res[i].price + " | Qty: " + res[i].stock_quantity);
+
         }
+        console.log("----------------------\n");
+        console.log("\nWhat would you like to buy? Enter product ID.")
     });
 
     userAction();
